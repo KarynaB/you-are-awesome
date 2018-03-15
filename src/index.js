@@ -9,7 +9,12 @@ const createNotEnumerableProperty = (property) => {
 	})
 	return property;
 };
-const createProtoMagicObject = () => {};
+const createProtoMagicObject = () => {
+    magicObj=()=> {};
+	magicObj.__proto__ = new Function();
+	magicObj.prototype = magicObj.__proto__;
+	return magicObj;
+};
 var inc = 0;
 Function.__proto__.valueOf = () => {
 	return inc;
